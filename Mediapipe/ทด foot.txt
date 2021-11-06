@@ -1,0 +1,37 @@
+    try:
+        landmarks = results.pose_landmarks.landmark
+
+        #เลือกส่วนของร่างกาย
+        left_ankle = [landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y]
+        right_ankle = [landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value].y]
+
+        print(left_ankle)
+
+        
+
+        if left_ankle is not None:
+            
+            cv2.circle(image,(tuple(np.multiply(left_ankle,[640,480]).astype(int))),10,(255,0,255),cv2.FILLED)
+
+            if landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y<420:
+                stage_l = 'down'
+            if landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y>420 and stage_l =='down':
+                stage_l= 'up'
+            counter_l+=1
+            print("L: ",counter_l)
+
+        if right_ankle is not None:
+
+            cv2.circle(image,(tuple(np.multiply(right_ankle,[640,480]).astype(int))),10,(255,0,255),cv2.FILLED)
+            if landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value].y<420:
+                stage_r = 'down'
+            if landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value].y>420 and stage_r =='down':
+                stage_r= 'up'
+                counter_r+=1
+                print("R: ",counter_r)
+
+
+        
+        
+    except:
+        pass
