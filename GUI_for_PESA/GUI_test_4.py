@@ -1,6 +1,6 @@
 from ttkbootstrap import Style
 from tkinter import ttk
-
+import runpy
 # settings
 style = Style(theme='superhero')
 window = style.master
@@ -9,12 +9,15 @@ window.title("PESA v 0.0.1")
 # define function zone : change what the button are going to do here
 def handcommand():
         print("hand!!")
+        runpy.run_module(mod_name='handTracker copy')
 
 def shouldercommand():
         print("shoulder!!")
+        runpy.run_module(mod_name='shoulderTracker')
 
 def gaitcommand():
         print("gait!!")
+        runpy.run_module(mod_name='footTracker')
 
 # text zone
 label = ttk.Label(
