@@ -140,4 +140,5 @@ with mp_hands.Hands(min_detection_confidence=0.5,min_tracking_confidence=0.5,max
     if cv2.waitKey(5) & 0xFF == 27 or end == 1:
       break
 cap.release()
+cv2.destroyAllWindows()
 print("Hz = ",counter/timer)
